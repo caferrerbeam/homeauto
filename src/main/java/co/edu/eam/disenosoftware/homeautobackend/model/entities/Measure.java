@@ -25,7 +25,9 @@ public class Measure implements Serializable {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-
+  /**
+   * measure value
+   */
   private Double value;
 
   /**
