@@ -58,4 +58,15 @@ public class Channel implements Serializable {
     this.max = max;
     this.min = min;
   }
+
+  @Override
+  public String toString() {
+    return "Channel{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", max=" + max +
+            ", min=" + min +
+            ", sensor=" + sensor +
+            '}';
+  }
 }

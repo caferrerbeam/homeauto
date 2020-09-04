@@ -6,6 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -30,6 +32,7 @@ public class Measure implements Serializable {
   /**
    * when this mesaured was taken
    */
+  //@Temporal(TemporalType.DATE)
   @Column(name = "date_time")
   private Date dateTime;
 
@@ -41,5 +44,15 @@ public class Measure implements Serializable {
   private Channel channel;
 
   public Measure() {
+  }
+
+  @Override
+  public String toString() {
+    return "Measure{" +
+            "id=" + id +
+            ", value=" + value +
+            ", dateTime=" + dateTime +
+            ", channel=" + channel +
+            '}';
   }
 }

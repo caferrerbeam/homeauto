@@ -35,4 +35,46 @@ public class Room implements Serializable {
 
   public Room() {
   }
+
+  /**
+   * Constructor
+   * @param id
+   * @param name
+   */
+  public Room(Long id, String name) {
+    this.id = id;
+    this.name = name;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public List<Sensor> getSensors() {
+    return sensors;
+  }
+
+  public void setSensors(List<Sensor> sensors) {
+    this.sensors = sensors;
+  }
+
+  @Override
+  public String toString() {
+    return "Room{"
+            + "id=" + id
+            + ", name='" + name + '\''
+            + '}';
+  }
 }
