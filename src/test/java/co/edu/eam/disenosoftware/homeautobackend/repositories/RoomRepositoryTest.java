@@ -45,7 +45,7 @@ public class RoomRepositoryTest {
     List<Room> roomListToAssert = roomRepository.getAllRooms();
 
     //verificaciones
-    Assertions.assertEquals(2, roomListToAssert.size());
+    Assertions.assertEquals(1, roomListToAssert.size());
   }
 
   @Test
