@@ -54,6 +54,14 @@ public class Sensor implements Serializable {
   public Sensor() {
   }
 
+  public Sensor(Long id, String name, String type, String brand, Room room) {
+    this.id = id;
+    this.name = name;
+    this.type = type;
+    this.brand = brand;
+    this.room = room;
+  }
+
   public Long getId() {
     return id;
   }

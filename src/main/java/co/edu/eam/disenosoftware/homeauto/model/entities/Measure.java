@@ -46,6 +46,13 @@ public class Measure implements Serializable {
   public Measure() {
   }
 
+  public Measure(Long id, Double value, Date dateTime, Channel channel) {
+    this.id = id;
+    this.value = value;
+    this.dateTime = dateTime;
+    this.channel = channel;
+  }
+
   @Override
   public String toString() {
     return "Measure{" +

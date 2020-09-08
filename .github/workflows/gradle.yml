@@ -11,9 +11,18 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    services:
+      postgres:
+        image: postgres:11.6-alpine
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: homeauto_test
+          POSTGRES_USER: postgres
+        ports:
+          - 5432:5432
+        # needed because the postgres container does not provide a healthcheck
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 1.11
@@ -22,7 +31,7 @@ jobs:
         java-version: 1.11
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-    - name: Build with Gradle
+    - name: Build
       run: ./gradlew build
-    - name: Build with Gradle
-      run: ./gradlew check
+    - name: Style check and tests
+      run: ./gradlew check --stacktrace
