@@ -25,4 +25,9 @@ public class HomeautoBackendApplication {
   public static void main(String[] args) {
     SpringApplication.run(HomeautoBackendApplication.class, args);
   }
+
+
+
+
+
 }
