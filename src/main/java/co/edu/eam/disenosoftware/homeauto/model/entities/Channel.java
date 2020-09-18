@@ -1,5 +1,6 @@
 package co.edu.eam.disenosoftware.homeauto.model.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -25,6 +26,7 @@ public class Channel implements Serializable {
   /**
    * Sensors name
    */
+  @Column(name = "name_channel")
   private String name;
 
   /**
