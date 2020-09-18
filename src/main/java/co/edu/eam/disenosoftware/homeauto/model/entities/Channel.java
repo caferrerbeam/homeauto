@@ -79,4 +79,52 @@ public class Channel implements Serializable {
             ", sensor=" + sensor +
             '}';
   }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Double getMax() {
+    return max;
+  }
+
+  public void setMax(Double max) {
+    this.max = max;
+  }
+
+  public Double getMin() {
+    return min;
+  }
+
+  public void setMin(Double min) {
+    this.min = min;
+  }
+
+  public List<Measure> getMeasures() {
+    return measures;
+  }
+
+  public void setMeasures(List<Measure> measures) {
+    this.measures = measures;
+  }
+
+  public Sensor getSensor() {
+    return sensor;
+  }
+
+  public void setSensor(Sensor sensor) {
+    this.sensor = sensor;
+  }
 }

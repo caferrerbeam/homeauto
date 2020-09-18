@@ -53,6 +53,12 @@ public class Measure implements Serializable {
     this.channel = channel;
   }
 
+  public Measure(Double value, Channel channel) {
+    this.value = value;
+    this.channel = channel;
+    dateTime = new Date();
+  }
+
   @Override
   public String toString() {
     return "Measure{" +
