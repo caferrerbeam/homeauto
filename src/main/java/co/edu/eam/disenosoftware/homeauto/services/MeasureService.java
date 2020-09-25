@@ -1,5 +1,7 @@
 package co.edu.eam.disenosoftware.homeauto.services;
 
+import co.edu.eam.disenosoftware.homeauto.exceptions.ErrorCodes;
+import co.edu.eam.disenosoftware.homeauto.exceptions.GenericBusinessException;
 import co.edu.eam.disenosoftware.homeauto.model.entities.Channel;
 import co.edu.eam.disenosoftware.homeauto.model.entities.Measure;
 import co.edu.eam.disenosoftware.homeauto.model.entities.Sensor;
@@ -26,17 +28,17 @@ public class MeasureService {
     Sensor sensor = sensorRepository.find(sensorId);
 
     if (sensor == null) {
-      throw new RuntimeException("Sensor no existe");
+      throw new GenericBusinessException("sensor no existe", ErrorCodes.SENSOR_NOT_FOUND);
     }
 
     Channel channel = channelRepository.find(channelId);
 
     if (channel == null) {
-      throw new RuntimeException("channel no existe");
+      throw new GenericBusinessException("channel no existe", ErrorCodes.CHANNEL_NOT_FOUND);
     }
 
     if (channel.getSensor().getId() != sensorId) {
-      throw new RuntimeException("channel no pertenece al sensor");
+      throw new GenericBusinessException("sensor no posee ese canal", ErrorCodes.CHANNEL_NOT_IN_SENSOR);
     }
 
     if (value > channel.getMax()) {

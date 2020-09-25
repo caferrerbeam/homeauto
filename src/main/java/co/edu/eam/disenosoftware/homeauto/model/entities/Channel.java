@@ -26,7 +26,6 @@ public class Channel implements Serializable {
   /**
    * Sensors name
    */
-  @Column(name = "name_channel")
   private String name;
 
   /**
