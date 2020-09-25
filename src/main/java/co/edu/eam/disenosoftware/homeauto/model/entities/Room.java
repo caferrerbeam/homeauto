@@ -2,6 +2,8 @@ package co.edu.eam.disenosoftware.homeauto.model.entities;
 
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -19,6 +21,7 @@ public class Room implements Serializable {
    * Primary key
    */
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   /**
@@ -43,6 +46,10 @@ public class Room implements Serializable {
    */
   public Room(Long id, String name) {
     this.id = id;
+    this.name = name;
+  }
+
+  public Room(String name) {
     this.name = name;
   }
 

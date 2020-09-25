@@ -19,8 +19,8 @@ public class ChannelRepository {
   private EntityManager em;
 
 
-  public void create(Sensor sensor) {
-    em.persist(sensor);
+  public void create(Channel channel) {
+    em.persist(channel);
   }
 
 
