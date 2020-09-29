@@ -1,6 +1,7 @@
 package co.edu.eam.disenosoftware.homeauto.services;
 
-import co.edu.eam.disenosoftware.homeauto.BusinessException;
+import co.edu.eam.disenosoftware.homeauto.exceptions.BusinessException;
+import co.edu.eam.disenosoftware.homeauto.exceptions.ErrorCodesEnum;
 import co.edu.eam.disenosoftware.homeauto.model.entities.Channel;
 import co.edu.eam.disenosoftware.homeauto.model.entities.Room;
 import co.edu.eam.disenosoftware.homeauto.model.entities.Sensor;
@@ -29,7 +30,7 @@ public class SensorService {
     Room room = roomRepository.find(roomId);
 
     if(room==null) {
-      throw new BusinessException("no existe el room", "room_not_found");
+      throw new BusinessException("No se puede crear el sensor porq eel cuarto no existe", ErrorCodesEnum.ROOM_NOT_FOUND);
     }
 
     Sensor sensor = new Sensor(name,type, brand, room);
@@ -44,11 +45,11 @@ public class SensorService {
     Room room = roomRepository.find(roomId);
 
     if(room==null) {
-      throw new BusinessException("no existe el room", "room_not_found");
+      throw new BusinessException("no existe el room", ErrorCodesEnum.ROOM_NOT_FOUND);
     }
 
     if (ranges.isEmpty()) {
-      throw new BusinessException("lista de canales vacia", "channel_list_empty");
+      throw new BusinessException("lista de canales vacia", ErrorCodesEnum.CHANNEL_LIST_EMPTY);
     }
 
     Sensor sensor = new Sensor(name,type, brand, room);

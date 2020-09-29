@@ -1,6 +1,7 @@
 package co.edu.eam.disenosoftware.homeauto.services;
 
-import co.edu.eam.disenosoftware.homeauto.BusinessException;
+import co.edu.eam.disenosoftware.homeauto.exceptions.BusinessException;
+import co.edu.eam.disenosoftware.homeauto.exceptions.ErrorCodesEnum;
 import co.edu.eam.disenosoftware.homeauto.model.entities.Channel;
 import co.edu.eam.disenosoftware.homeauto.model.entities.Room;
 import co.edu.eam.disenosoftware.homeauto.model.entities.Sensor;
@@ -117,8 +118,7 @@ public class SensorServiceTest {
                     1L, 0.0, 10.0)
     );
 
-    Assertions.assertEquals("no existe el room", exception.getMessage());
-    Assertions.assertEquals("room_not_found", exception.getCodigo());
+    Assertions.assertEquals(ErrorCodesEnum.ROOM_NOT_FOUND, exception.getCodigo());
   }
 
 
