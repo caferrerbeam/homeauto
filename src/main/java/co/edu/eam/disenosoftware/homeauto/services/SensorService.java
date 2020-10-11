@@ -25,7 +25,11 @@ public class SensorService {
   @Autowired
   private ChannelRepository channelRepository;
 
-  public void create(String name, String type,String brand, Long roomId, Double min, Double max){
+  public Sensor create(String name, String type,String brand, Long roomId, Double min, Double max){
+
+    if (min > max) {
+      throw new BusinessException("el max debe ser menor que el min", ErrorCodesEnum.BAD_PARAMS);
+    }
 
     Room room = roomRepository.find(roomId);
 
@@ -39,9 +43,11 @@ public class SensorService {
 
     sensor.getChannels().add(channel);
     sensorRepository.create(sensor);
+
+    return sensor;
   }
 
-  public void create(String name, String type, String brand, Long roomId, List<Double[]> ranges) {
+  public Sensor create(String name, String type, String brand, Long roomId, List<Double[]> ranges) {
     Room room = roomRepository.find(roomId);
 
     if(room==null) {
@@ -63,6 +69,8 @@ public class SensorService {
     }
 
     sensorRepository.create(sensor);
+
+    return sensor;
   }
 
 
