@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Component
 @Transactional
@@ -22,5 +23,9 @@ public class SensorRepository {
 
   public Sensor find(Long id) {
     return em.find(Sensor.class, id);
+  }
+
+  public List<Sensor> getAll() {
+    return em.createQuery("select s from Sensor s").getResultList();
   }
 }

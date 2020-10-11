@@ -1,5 +1,8 @@
 package co.edu.eam.disenosoftware.homeauto.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -44,6 +47,7 @@ public class Measure implements Serializable {
    */
   @ManyToOne
   @JoinColumn(name = "channel_id", referencedColumnName = "id")
+  @JsonBackReference
   private Channel channel;
 
   public Measure() {

@@ -64,4 +64,11 @@ public class SensorService {
 
     sensorRepository.create(sensor);
   }
+
+
+  public List<Sensor> getAllSensors(){
+    return sensorRepository.getAll();
+  }
+
+
 }

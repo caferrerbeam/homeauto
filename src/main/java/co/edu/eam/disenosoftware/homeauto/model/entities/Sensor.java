@@ -1,5 +1,8 @@
 package co.edu.eam.disenosoftware.homeauto.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -46,6 +49,7 @@ public class Sensor implements Serializable {
    * sensor channels
    */
   @OneToMany(mappedBy = "sensor", cascade = CascadeType.ALL)
+  @JsonManagedReference
   private List<Channel> channels;
 
 
@@ -54,6 +58,7 @@ public class Sensor implements Serializable {
    */
   @ManyToOne
   @JoinColumn(name = "room_id", referencedColumnName = "id")
+  @JsonBackReference
   private Room room;
 
   public Sensor() {

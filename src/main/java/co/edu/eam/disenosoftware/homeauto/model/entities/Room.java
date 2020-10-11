@@ -1,6 +1,9 @@
 package co.edu.eam.disenosoftware.homeauto.model.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,6 +37,7 @@ public class Room implements Serializable {
    * sensonrs installed in this room
    */
   @OneToMany(mappedBy = "room")
+  @JsonManagedReference
   private List<Sensor> sensors;
 
   public Room() {
