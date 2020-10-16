@@ -198,4 +198,34 @@ public class SensorControllerTest {
     Assertions.assertEquals("0003", error.getCode());
   }
 
+  @Test
+  @Sql({"/testdata/testCreateSensorMinGreaterThanMax.sql"})
+  public void testCreateSensorBadParameters() throws Exception {
+    //1. crear la peticion
+    String jsonBody = "{\n" +
+            "    \"type\": \"temp\",\n" +
+            "    \"brand\": \"gato\",\n" +
+            "    \"roomId\":1,\n" +
+            "    \"min\": 1000.3,\n" +
+            "    \"max\": 100\n" +
+            "}";
+    RequestBuilder request = MockMvcRequestBuilders.post("/sensors")
+            .contentType("application/json")
+            .content(jsonBody);
+
+    //2. hacer la peticion
+    ResultActions result = mockMvc.perform(request);
+
+    //3. sacar los resultados de la peticion
+    String body = result.andReturn().getResponse().getContentAsString();
+    int status = result.andReturn().getResponse().getStatus();
+
+    //4. hacer las asersion
+    Assertions.assertEquals(HttpStatus.BAD_REQUEST.value(), status);
+    System.out.println(body);
+
+    ErrorResponse error = objectMapper.readValue(body, ErrorResponse.class);
+    Assertions.assertEquals("1000", error.getCode());
+  }
+
 }

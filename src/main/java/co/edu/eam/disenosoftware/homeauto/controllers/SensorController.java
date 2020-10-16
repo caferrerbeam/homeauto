@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -37,7 +38,7 @@ public class SensorController {
    * parametros: {name:, type, brand, room_id, min, max}
    */
   @PostMapping
-  public void createSensor(@RequestBody CreateSensorRequest request) {
+  public void createSensor(@RequestBody @Valid CreateSensorRequest request) {
     sensorService.create(request.getName(), request.getType(), request.getBrand(), request.getRoomId(), request.getMin(), request.getMax());
   }
 
