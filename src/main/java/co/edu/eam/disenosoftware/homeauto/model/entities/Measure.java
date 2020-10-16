@@ -1,7 +1,12 @@
 package co.edu.eam.disenosoftware.homeauto.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,6 +27,7 @@ public class Measure implements Serializable {
    * Primary key
    */
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   /**
@@ -41,6 +47,7 @@ public class Measure implements Serializable {
    */
   @ManyToOne
   @JoinColumn(name = "channel_id", referencedColumnName = "id")
+  @JsonBackReference
   private Channel channel;
 
   public Measure() {
@@ -51,6 +58,12 @@ public class Measure implements Serializable {
     this.value = value;
     this.dateTime = dateTime;
     this.channel = channel;
+  }
+
+  public Measure(Double value, Channel channel) {
+    this.value = value;
+    this.channel = channel;
+    dateTime = new Date();
   }
 
   @Override

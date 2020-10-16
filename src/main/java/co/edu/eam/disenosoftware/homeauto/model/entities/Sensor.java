@@ -1,13 +1,20 @@
 package co.edu.eam.disenosoftware.homeauto.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +27,7 @@ public class Sensor implements Serializable {
    * Primary key
    */
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   /**
@@ -40,7 +48,8 @@ public class Sensor implements Serializable {
   /**
    * sensor channels
    */
-  @OneToMany(mappedBy = "sensor", fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "sensor", cascade = CascadeType.ALL)
+  @JsonManagedReference
   private List<Channel> channels;
 
 
@@ -49,9 +58,18 @@ public class Sensor implements Serializable {
    */
   @ManyToOne
   @JoinColumn(name = "room_id", referencedColumnName = "id")
+  @JsonBackReference
   private Room room;
 
   public Sensor() {
+  }
+
+  public Sensor(String name, String type, String brand, Room room) {
+    this.name = name;
+    this.type = type;
+    this.brand = brand;
+    this.room = room;
+    channels = new ArrayList<>();
   }
 
   public Sensor(Long id, String name, String type, String brand, Room room) {

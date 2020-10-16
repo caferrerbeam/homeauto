@@ -2,6 +2,7 @@ package co.edu.eam.disenosoftware.homeauto.repositories;
 
 
 import co.edu.eam.disenosoftware.homeauto.model.entities.Measure;
+import co.edu.eam.disenosoftware.homeauto.model.entities.Sensor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +17,10 @@ public class MeasureRepository {
 
   @PersistenceContext
   private EntityManager em;
+
+  public void create(Measure measure) {
+    em.persist(measure);
+  }
 
   /**
    * Method to find measure with values greate than parameter

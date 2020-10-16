@@ -1,7 +1,12 @@
 package co.edu.eam.disenosoftware.homeauto.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,6 +26,7 @@ public class Channel implements Serializable {
    * Primary key
    */
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   /**
@@ -43,6 +49,7 @@ public class Channel implements Serializable {
    * Mesasures taken by sensor in this channel
    */
   @OneToMany(mappedBy = "channel")
+  @JsonManagedReference
   private List<Measure> measures;
 
   /**
@@ -50,6 +57,7 @@ public class Channel implements Serializable {
    */
   @ManyToOne
   @JoinColumn(name = "sensor_id", referencedColumnName = "id")
+  @JsonBackReference
   private Sensor sensor;
 
   public Channel() {
@@ -78,5 +86,53 @@ public class Channel implements Serializable {
             ", min=" + min +
             ", sensor=" + sensor +
             '}';
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Double getMax() {
+    return max;
+  }
+
+  public void setMax(Double max) {
+    this.max = max;
+  }
+
+  public Double getMin() {
+    return min;
+  }
+
+  public void setMin(Double min) {
+    this.min = min;
+  }
+
+  public List<Measure> getMeasures() {
+    return measures;
+  }
+
+  public void setMeasures(List<Measure> measures) {
+    this.measures = measures;
+  }
+
+  public Sensor getSensor() {
+    return sensor;
+  }
+
+  public void setSensor(Sensor sensor) {
+    this.sensor = sensor;
   }
 }
