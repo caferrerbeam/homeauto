@@ -1,0 +1,1 @@
+insert into rooms (id,name) values (1, 'sala');

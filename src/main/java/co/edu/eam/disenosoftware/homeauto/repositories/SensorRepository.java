@@ -28,4 +28,11 @@ public class SensorRepository {
   public List<Sensor> getAll() {
     return em.createQuery("select s from Sensor s").getResultList();
   }
+
+  public List<Sensor> getByName(String name) {
+    return em.createQuery("select s from Sensor s where s.name = :name")
+            .setParameter("name", name)
+            .getResultList();
+  }
+
 }
